@@ -1,0 +1,22 @@
+%Connected logic
+if connected
+    Mtot = zeros(size(map.M0,1),numAgents);
+    for k = 1:numAgents
+        robots(k).particleFollow = 1;
+        robots(k).particleGuess = ones(numAgents,1);
+        Mtot(:,k) = robots(k).M0;
+        robots(k).Fk}.otherBots = -1;
+    end
+    [~,I] = max(abs(Mtot-0.5),[],2);
+    I = sub2ind(size(Mtot),(1:length(Mtot))',I);
+    M1 = Mtot(I);
+    [robots(:).M0] = deal(M1);
+    for k = 1:numAgents
+        for p = 1:numParticles
+            for f = fn
+                robots(k).particles(k,p).(f{1}) = robots(k).(f{1});
+            end
+            robots(k).particles(k,p).vel = robots(k).vel*(1-(p-1)*decay);
+        end
+    end
+end
