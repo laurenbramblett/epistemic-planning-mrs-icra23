@@ -11,6 +11,4 @@ Open the file `main.m` and press run.
 Variables can be changed in the `main.m` script on lines `4-34`. Additional variables including the partially-known map, agent parameters and dynamics, and the map can be manipulated in the `utils/InitializeSimEnvironment.m` script
 
 #### Example Video
-Below is a GIF of the example run
-
 ![](https://github.com/laurenbramblett/epistemic-planning-mrs-icra23/blob/main/Example_020724-093813.gif)
