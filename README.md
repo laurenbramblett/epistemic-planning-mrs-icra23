@@ -12,4 +12,4 @@ Variables can be changed in the `main.m` script on lines `4-34`. Additional vari
 
 #### Example Video
 Below is a GIF of the example run
-![](https://github.com/epistemic-planning-mrs-icra23/Example_020724-093813.gif)
+![][https://github.com/](https://github.com/laurenbramblett/epistemic-planning-mrs-icra23/Example_020724-093813.gif)
