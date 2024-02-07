@@ -1,6 +1,6 @@
 function makeVideo(F,filename)
-    testtime = datestr(now,'mm-dd-yy-HHMMSS');
-    video_filename = sprintf('%s-%s', filename,testtime);
+    % testtime = datestr(now,'mm-dd-yy-HHMMSS');
+    video_filename = sprintf('%s', filename);
     % % % create the video writer with 30 fps
     if ispc
         vidForm = 'MPEG-4';

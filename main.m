@@ -4,7 +4,7 @@ addpath("utils","images")
 %%-----Initialize Run-----%%
 seed = 0;
 rng(seed) 
-fileNS = sprintf('Example_%s.mat',datestr(now,"mmddyy-HHMMSS"));
+fileNS = sprintf('Example_%s',datestr(now,"mmddyy-HHMMSS"));
 makeVideoLogic = false; saveDataLogic = false;
 
 %%-----Define Initial Robot Parameters-----%%
@@ -32,9 +32,9 @@ InitializeSimEnvironment
 triggerFault = randi([20,30]);
 whichParticle = randi([2,numParticles]);
 whichRobot = randi(numAgents);
+
+%%-----Run-----%%
 count = 0;
-
-
 for i = 1:2000
     % fprintf('count: %d; iter: %d; avg compTime: %.2f\n',count,i,avg_timePerVehicle)
     tic;
@@ -89,9 +89,9 @@ for i = 1:2000
 end
 F = F(1,1:i);
 if makeVideoLogic 
-    makeVideo(F,sprintf('%s',fileNS)
+    makeVideo(F,sprintf('%s',fileNS))
 end
 if saveDataLogic
-    save(fileNS)
+    save(sprintf('%s.mat',fileNS))
 end
 
