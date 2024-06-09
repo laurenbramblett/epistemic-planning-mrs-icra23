@@ -67,13 +67,12 @@ else
     end
 end
 
-delete(plt.tasks(1,:));
-if ~isempty(tasks)
-    for c = 1:size(tasks,1)
-        plt.tasks = image('CData',fImg,'XData',[tasks(c,1)-1 tasks(c,1)+1],'YData',...
-            [tasks(c,2)-1.2 tasks(c,2)+1.2],'AlphaData',alphachannel);
-    end
-    %     set(gca,'Color','none')
+for c = 1:size(tasks_t{1},1)
+    if ismember()
+    image('CData',fImg,'XData',[tasks(c,1)-1 tasks(c,1)+1],'YData',...
+        [tasks(c,2)-1.2 tasks(c,2)+1.2],'AlphaData',alphachannel)
+end
+%     set(gca,'Color','none')
 end
 
 title(sprintf('Time: $%.2f$s',i*dt),'interpreter','latex');

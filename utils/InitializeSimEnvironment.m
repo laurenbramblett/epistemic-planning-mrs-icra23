@@ -81,7 +81,7 @@ particleFollow = ones(1,numAgents);
 velCats = [2,1.4,0.8];
 
 %%-----Tasks-----%%
-tasks         = ((45-5)*rand(numTasks,2)+5);
+tasks         = ((map.size(1)-5)*rand(numTasks,2)+5);
 completeRange = 1;
 
 %%-----Obstacles-----%%

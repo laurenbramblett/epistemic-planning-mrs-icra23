@@ -23,7 +23,7 @@ decay        = 0.2;
 numFaults    = 1; 
 
 %%-----Define Initial Environment-----%%
-numTasks = 0;
+numTasks = 0; %TODO: Fix for tasks -- does not work yet with new data structures
 obDist = 1; 
 triggerRz = 50;
 
@@ -34,7 +34,8 @@ whichParticle = randi([2,numParticles]);
 whichRobot = randi(numAgents);
 
 %%-----Run-----%%
-count = 0;
+count = 0; 
+runType = ""; %If CM (connected mandate) then robots will stay together -- may need tuning for certain environments
 for i = 1:2000
     % fprintf('count: %d; iter: %d; avg compTime: %.2f\n',count,i,avg_timePerVehicle)
     tic;
@@ -51,7 +52,7 @@ for i = 1:2000
         robots(k).M0 = updateOccupancyMap(zCells,robots(k).M0,map);
 
         %Add attraction force at specified time
-        if count>triggerRz
+        if count>triggerRz && runType ~= "CM"
             robots(k).coeffs.otherBots = min((count-triggerRz)*1.01^(count-triggerRz),FC.obs-FC.obs/2);
             robots(k).coeffs.frontier = max(FC.frontier*0.99^(count-triggerRz),0);
         end
@@ -82,7 +83,11 @@ for i = 1:2000
     storageLogic
     
     %Plot
-    plotInline
+    if plotInline_logic
+        plotInline
+    end
+
+    % Check if mission is complete
     if connected && sum(sum(frontier))<1
         break
     end

@@ -1,6 +1,7 @@
 %Connected logic
 allPoses = [robots(:).pose];
-distMat = squareform(pdist(allPoses(1:2,:)'))<2*maxRange;
+distances = squareform(pdist(allPoses(1:2,:)'));
+distMat = distances<2*maxRange;
 bins = conncomp(graph(distMat));
 connected = all(bins==1);
 if connected
@@ -30,5 +31,18 @@ end
 for k = 1:numAgents
     for r = 1:numAgents
         robots(k).guessLocs(:,r) = robots(k).particles(r,robots(k).particleGuess(r)).pose;
+    end
+end
+
+if runType == "CM"
+    for k = 1:numAgents
+        otherBots = setdiff(1:numAgents,k);
+        if any(distances(k,otherBots)<1)
+            robots(k).coeffs.otherBots = -1;
+        elseif any(distances(k,otherBots)<maxRange)
+            robots(k).coeffs.otherBots = 0;
+        else
+            robots(k).coeffs.otherBots = 5;
+        end
     end
 end
