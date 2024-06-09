@@ -6,6 +6,7 @@ seed = 0;
 rng(seed) 
 fileNS = sprintf('Example_%s',datestr(now,"mmddyy-HHMMSS"));
 makeVideoLogic = false; saveDataLogic = false;
+plotInlineLogic = false;
 
 %%-----Define Initial Robot Parameters-----%%
 robotVel     = 5;
@@ -35,7 +36,7 @@ whichRobot = randi(numAgents);
 
 %%-----Run-----%%
 count = 0; 
-runType = ""; %If CM (connected mandate) then robots will stay together -- may need tuning for certain environments
+runType = "CM"; %If CM (connected mandate) then robots will stay together -- may need tuning for certain environments
 for i = 1:2000
     % fprintf('count: %d; iter: %d; avg compTime: %.2f\n',count,i,avg_timePerVehicle)
     tic;
@@ -83,7 +84,7 @@ for i = 1:2000
     storageLogic
     
     %Plot
-    if plotInline_logic
+    if plotInlineLogic
         plotInline
     end
 
